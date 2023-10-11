@@ -5,7 +5,7 @@ function Sushi({ id, name, img_url, price, handleEat }) {
 
   const onEat = () => {
     setEaten(!eaten)
-    handleEat(id)
+    handleEat(id, price)
   }
   
   return (

@@ -29,16 +29,21 @@ function App() {
     console.log('reload')
   }
 
-  const handleEat = (id) => {
+  const handleEat = (id, price) => {
     fetch(`${API}/${id}`, {
       method: 'DELETE'
     })
     setTotalEaten(current => current + 1)
+    setCurrentBalance(current => current - price)
+  }
+
+  const handleAddMoney = (amountAdded) => {
+    setCurrentBalance(current => current + amountAdded)
   }
 
   return (
     <div className="app">
-      <Wallet />
+      <Wallet handleAddMoney={handleAddMoney}/>
       <SushiContainer sushi={sushi} endOfColl={endOfColl} handleEat={handleEat} reloadSushi={reloadSushi}/>
       <Table currentBalance={currentBalance} totalEaten={totalEaten}/>
     </div>
